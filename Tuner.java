@@ -21,12 +21,13 @@ public class Tuner
         int sample = 0;
         int len = condensed.length / 2;
 
-            for (int i = 0; i < len; i++) {
+            for (int i = 0; i < len; i++)
+            {
                 double dist = 0;
 
                 for (int j = 0; j < len; j++)
                 {
-                    // Compare the base wave with one offset by horizontal translation i
+                    // Compare the base wave peak with one offset by horizontal translation i
                     dist += Math.abs(condensed[j] - condensed[i + j]);
                 }
 
@@ -43,19 +44,21 @@ public class Tuner
                 maxDist = Math.max(dist, maxDist);
             }
 
+        // If we have a valid frequency, put it in a single octave range
         if (sample > 0)
         {
             double frequency = (rate/sample);
             //Log.d("Calculator", String.format("%.2fhz",frequency));
 
-            // Put hz into an octave range
-            // A4
-            while (frequency < 440) {
+            // A4 - low end
+            while (frequency < 440)
+            {
                 frequency *= 2;
             }
 
-            // A5
-            while (frequency > 880) {
+            // A5 - high end
+            while (frequency > 880)
+            {
                 frequency /= 2;
             }
 
